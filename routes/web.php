@@ -9,6 +9,9 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 
+
+
+Route::group(['prefix' => 'admin'], function () {
 // Route::get('/',[HomeController::class,'home'])->name('dashboard');
 Route::get('/',[HomeControler::class,'home'])->name('home');
 
@@ -22,7 +25,7 @@ Route::post('/do-Login',[UserAuthenticationController::class,'do_login'])->name(
 
 Route::get('/admin-role',[RoleController::class,'admin_role'])->name('admin.role');
 Route::get('/admin-role-form',[RoleController::class,'admin_role_form'])->name('admin.role.form');
-Route::get('/admin-role-store',[RoleController::class,'admin_role_store'])->name('admin.role.store');
+Route::post('/admin-role-store',[RoleController::class,'admin_role_store'])->name('admin.role.store');
 
 //user 
 Route::get('/users',[UserController::class,'users'])->name('users.list');
@@ -36,3 +39,4 @@ Route::get('/category',[CategoryController::class,'category'])->name('category.l
 Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
 Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
 
+});

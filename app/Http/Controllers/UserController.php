@@ -27,6 +27,8 @@ public function users_store(Request $request)
     [
        
         'user_name'=>'required',
+        'user_email'=>'required',
+        'user_phone'=>'required',
         'admin_role_id'=>'required',
         'user_password'=>'required'
     ]);
@@ -36,10 +38,12 @@ public function users_store(Request $request)
    User::create([
      
         'name'=>$request->user_name,
-       
-        'role_id'=>$request->role_id
+        'email'=>$request->user_email,
+        'phone'=>$request->user_phone,
+        'role_id'=>$request->role_id,
+        'password'=>$request->user_password,
     ]);
 
-    return redirect()->route('parts.list');
+    return redirect()->route('users.list');
 }
 }
