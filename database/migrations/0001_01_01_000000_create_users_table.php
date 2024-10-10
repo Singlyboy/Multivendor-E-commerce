@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone')->unique();
-            $table->string('role')->default('Not Assign');
-           $table->rememberToken();
+            $table->integer('role_id');
+            $table->rememberToken();
             $table->timestamps();
         });
 
