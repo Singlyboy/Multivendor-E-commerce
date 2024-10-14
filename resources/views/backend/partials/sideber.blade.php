@@ -32,7 +32,7 @@ Dashboard
 
 </li>
 <li class="nav-item">
-<a href="pages/widgets.html" class="nav-link">
+<a href="{{route('admin.role')}}" class="nav-link">
 <i class="nav-icon fas fa-th"></i>
 <p>
 Admin Role
@@ -41,19 +41,19 @@ Admin Role
 </a>
 </li>
 <li class="nav-item">
-<a href="pages/widgets.html" class="nav-link">
+<a href="{{route('users.list')}}" class="nav-link">
 <i class="nav-icon fas fa-th"></i>
 <p>
-Category
+Users
 
 </p>
 </a>
 </li>
 <li class="nav-item">
-<a href="#" class="nav-link">
+<a href="{{route('category.list')}}" class="nav-link">
 <i class="nav-icon fas fa-copy"></i>
 <p>
-Product
+Category
 
 
 </p>
