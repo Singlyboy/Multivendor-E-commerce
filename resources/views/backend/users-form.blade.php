@@ -10,22 +10,19 @@
 @csrf
   <div class="form-group">
     <label for="name">Enter Users Name</label>
-    <input required name="par_name" type="text" class="form-control" id="name" placeholder="Enter users Name">
+    <input required name="user_name" type="text" class="form-control" id="name" placeholder="Enter users Name">
   </div>
 
   <div class="form-group">
     <label for="xyz">Select Role Name:</label>
-    <select name="role_id" class="form-select" aria-label="Default select example">
+    <select name="role_id" class="form-control" aria-label="Default select example">
       
     @foreach ($allrole as $role)
     
     <option value="{{$role->id}}">{{$role->name}}</option>
     @endforeach
-     
-  <div class="form-group" style="margin-top: 10px;">
-    <label for="name">Enter Description</label>
-   <textarea class="form-control" name="user_description" id="" placeholder="Enter Description"></textarea>
-  </div>
+    </div>
+
 
   <div class="form-group">
     <label for="name">Users Email</label>

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'admin'], function () {
-// Route::get('/',[HomeController::class,'home'])->name('dashboard');
 Route::get('/',[HomeControler::class,'home'])->name('home');
 
 
@@ -36,7 +35,7 @@ Route::post('/user-store',[UserController::class,'users_store'])->name('users.st
 //category
 
 Route::get('/category',[CategoryController::class,'category'])->name('category.list');
-Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
-Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
+// Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
+// Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
 
 });

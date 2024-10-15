@@ -18,7 +18,7 @@
   </thead>
   <tbody>
 
-@foreach ($allrol as $key=>$role)
+@foreach ($allrole as $key=>$role)
  
 <tr>
       <th scope="row">{{$key+1}}</th>
