@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'admin'], function () {
-
 Route::get('/',[HomeControler::class,'home'])->name('home');
 
 

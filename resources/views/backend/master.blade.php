@@ -56,7 +56,7 @@
   <script src="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.js"></script>
   <script src="https://adminlte.io/themes/v3/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
-  <script src="https://adminlte.io/themes/v3/dist/js/demo.js"></script>
+
   <script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>
 </body>
 </html>
