@@ -26,8 +26,8 @@
       <td>{{$role->description}}</td>
         <td>
         
-        <a class="btn btn-info" href="">Edit</a>
-        <a class="btn btn-danger" href="">Delete</a>
+        <a class="btn btn-info" href="{{route('admin.role.edit',$role->id)}}">Edit</a>
+        <a class="btn btn-danger" href="{{route('admin.role.delete',$role->id)}}">Delete</a>
       </td>
     </tr>
 

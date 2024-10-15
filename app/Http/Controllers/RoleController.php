@@ -40,4 +40,46 @@ class RoleController extends Controller
         return redirect()->back();
 
     }
+    public function delete($id)
+    {
+    
+        $allrole=Role::find($id);//data entry
+        
+        $allrole->delete();//delete done
+       
+        return redirect()->back();
+    
+        
+    }
+    public function edit($id)
+{
+
+    $allrole=Role::find($id);
+   
+    return view('backend.pages.role-edit',compact('allrole'));
+}
+    
+public function update(Request $request,$id)
+{
+    
+
+    //validation
+    $validation=Validator::make($request->all(),
+    [
+        'cat_name'=>'required|min:2',
+    ]);
+
+
+    //query
+    $allrole=Role::find($id);
+    $allrole->update([
+        'name'=>$request->role_name,
+        'description'=>$request->role_description
+    ]);
+  
+    // notify()->success('role updated successfully.');
+    return redirect()->route('admin.role');
+
+
+}
 }
