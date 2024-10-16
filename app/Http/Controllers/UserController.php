@@ -46,4 +46,54 @@ public function users_store(Request $request)
 
     return redirect()->route('users.list');
 }
+
+public function delete($id)
+{
+
+    $users=User::find($id);//data entry
+    $users->delete();//delete done
+
+    // notify()->success('User Deleted successfully.');
+
+    return redirect()->back();
+   
+}
+public function edit($id)
+{
+
+    $users=User::find($id);
+    $allrole=Role::all();
+    return view('backend.pages.user-edit',compact('allrole','users'));
+}
+public function update(Request $request,$id)
+{
+    
+    //validation
+    $validation=Validator::make($request->all(),
+    [
+       
+        'user_name'=>'required',
+        'user_email'=>'required',
+        'user_phone'=>'required',
+        'admin_role_id'=>'required',
+       
+        
+    ]);
+
+
+    //query
+    $users=User::find($id);
+    $users->update([
+       'name'=>$request->user_name,
+        'email'=>$request->user_email,
+        'phone'=>$request->user_phone,
+        'role_id'=>$request->role_id,
+        
+    ]);
+  
+    // notify()->success('Parts updated successfully.');
+    return redirect()->route('');
+
+
+}
 }

@@ -34,7 +34,7 @@ class RoleController extends Controller
         Role::create([
            
             'name'=>$request->role_name,
-            'description'=>$request->role_description
+            'status'=>$request->role_status
         ]);
 
         return redirect()->back();
@@ -74,7 +74,7 @@ public function update(Request $request,$id)
     $allrole=Role::find($id);
     $allrole->update([
         'name'=>$request->role_name,
-        'description'=>$request->role_description
+        'status'=>$request->role_status
     ]);
   
     // notify()->success('role updated successfully.');
@@ -82,4 +82,10 @@ public function update(Request $request,$id)
 
 
 }
+public function assignRole($id)
+    {
+        $allrole=Role::find($id);
+
+        return view('backend.pages.assign-role',compact('allrole'));
+    }
 }

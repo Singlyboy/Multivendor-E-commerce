@@ -14,8 +14,13 @@
   </div>
 
   <div class="form-group" style="margin-top: 10px;">
-    <label for="name">Enter Description</label>
-   <textarea class="form-control" name="role_description" id="" placeholder="Enter Description"></textarea>
+    <label for="name">Enter Status</label>
+    <select name="role_status" id="" class="form-control">
+      <option value="">--select--</option>
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+    </select>
+   
   </div>
 
 
