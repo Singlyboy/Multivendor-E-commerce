@@ -19,7 +19,6 @@
       <th scope="col">Role Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
-      <th scope="col">Password</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -30,13 +29,10 @@
       <td>{{$users->name}}</td>
       <td>{{$users->role->name}}</td>
       <td>{{$users->email}}</td>
-      <td>{{$users->phone}}</td>       
-      <td>{{$users->password}}</td>    
-     
+      <td>{{$users->phone}}</td>            
       <td>
-      <a href="" class="btn btn-primary">View</a>
-      <a href="" class="btn btn-success">Edit</a>
-      <a href="" class="btn btn-danger">Delete</a>
+      <a href="{{route('user.role.edit',$users->id)}}" class="btn btn-success">Edit</a>
+      <a href="{{route('user.role.delete',$users->id)}}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
     @endforeach
