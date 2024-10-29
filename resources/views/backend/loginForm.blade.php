@@ -29,7 +29,7 @@ body{
 .box{
     position: relative;
     width: 370px;
-    height: 750px;
+    height: 350px;
     background: #1c1c1c;
     border-radius: 50px 5px;
     overflow: hidden;
@@ -182,26 +182,24 @@ input[type="submit"]:active{
 </head>
 <body>
     <div class="box">
-        <form action="{{route('Do.SignUp')}}" method="post">
+        <form action="{{route('Do.Login')}}" method="post">
             @csrf
             
             <div class="input-box">
                 <h2>Log In</h2>
-                <input type="text" name="user_email" required>
+                <input type="text" id="login"  name="email" required>
                 <span>Email</span>
                 <i></i>
             </div>
             
             <div class="input-box">
-                <input type="password" name="password" required>
+                <input type="password" name="password" id="password" required>
                 <span>Enter Password</span>
                 <i></i>
             </div>
-           
-            <button type="submit"  value="Login">Sign Up</button>
+            <button type="submit" class="btn btn-primary" value="Login">Sign Up</button>
             <div class="links">
-                <a href="#">Forgot Password?</a>
-                <a href="">Sign In</a>
+                <a href="#">Forgot Password?</a>  
             </div>
         </form>
     </div>

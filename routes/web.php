@@ -7,20 +7,35 @@ use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
 
 
+
+Route::get('/',[FrontendHomeController::class,'home'])->name('home');
+Route::post('/registration',[FrontendCustomerController::class,'registration'])->name('customer.registration');
+Route::post('/do-login',[FrontendCustomerController::class,'customerLogin'])->name('customer.login');
+Route::get('/otp',[FrontendHomeController::class,'otpPage'])->name('otp.page');
+Route::post('/otp-submit',[FrontendHomeController::class,'otpSubmit'])->name('otp.submit');
+
+Route::group(['middleware'=>'customer_auth'],function (){
+
+Route::get('/logout',[FrontendCustomerController::class,'customerLogout'])->name('customer.logout');
+
+});
 
 
 Route::group(['prefix' => 'admin'], function () {
-Route::get('/',[HomeControler::class,'home'])->name('home');
 
 
-Route::get('/Login',[UserAuthenticationController::class,'view_login_form'])->name('Login.view.form');
+Route::get('/Login',[UserAuthenticationController::class,'view_login'])->name('login');
 Route::post('/do-Login',[UserAuthenticationController::class,'do_login'])->name('Do.Login');
 
 
+Route::group(['middleware' => ['auth','check_permission']], function () {
 
-//admin role
+ Route::get('/',[HomeControler::class,'home'])->name('deshboard');
+ Route::get('/logout', [UserAuthenticationController::class, 'logout'])->name('logout');
 
 Route::get('/admin-role',[RoleController::class,'admin_role'])->name('admin.role');
 Route::get('/admin-role-form',[RoleController::class,'admin_role_form'])->name('admin.role.form');
@@ -29,23 +44,19 @@ Route::post('/admin-role-store',[RoleController::class,'admin_role_store'])->nam
 Route::get('/admin-role/delete/{r_id}',[RoleController::class,'delete'])->name('admin.role.delete');
 Route::get('/admin-role/edit/{r_id}',[RoleController::class,'edit'])->name('admin.role.edit');
 Route::post('/admin-role/update/{r_id}',[RoleController::class,'update'])->name('admin.role.update');
-Route::get('/admin-role/view/{r_id}',[RoleController::class,'assignRole'])->name('assign.role.view');
+Route::get('/admin-role/view/{r_id}',[RoleController::class,'showRole'])->name('role.view');
+Route::post('/admin-role/permissions/assign/{r_id}', [RoleController::class, 'assignPermission'])->name('admin.permission.assign');
 
-//users 
-Route::get('/users',[UserController::class,'users'])->name('users.list');
-Route::get('/users-form',[UserController::class,'users_form'])->name('users.form');
-Route::post('/user-store',[UserController::class,'users_store'])->name('users.store');
 
-Route::get('/user-role/delete/{u_id}',[UserController::class,'delete'])->name('user.role.delete');
-Route::get('/user-role/edit/{u_id}',[UserController::class,'edit'])->name('user.role.edit');
-Route::post('/user-role/update/{u_id}',[UserController::class,'update'])->name('user.role.update');
+
+
+Route::resource('users',UserController::class);
 
 
 
 //category
 
-Route::get('/category',[CategoryController::class,'category'])->name('category.list');
-// Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
-// Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
 
 });
+
+}); 

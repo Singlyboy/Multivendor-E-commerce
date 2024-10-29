@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+@notifyCss
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
@@ -22,6 +23,7 @@
     <div class="preloader flex-column justify-content-center align-items-center">
       <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
+    @include('notify::components.notify')
 
     <!-- Include header and sidebar -->
     =@include('backend.partials.header')
@@ -39,6 +41,7 @@
   </div>
 
   <!-- Scripts -->
+  
   <script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
   <script src="https://adminlte.io/themes/v3/plugins/jquery-ui/jquery-ui.min.js"></script>
   <script>
@@ -58,5 +61,6 @@
   <script src="https://adminlte.io/themes/v3/dist/js/adminlte.js?v=3.2.0"></script>
 
   <script src="https://adminlte.io/themes/v3/dist/js/pages/dashboard.js"></script>
+  @notifyJs
 </body>
 </html>

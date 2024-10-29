@@ -10,19 +10,21 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    // protected $guarded = [];
+    // public $timestamps=false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    // protected $fillable = [
-    //     'name',
-    //     'email',
-    //     'password',
-    //     'phone',
-    //     'role_id' 
-    // ];
+     protected $fillable = [
+         'name',
+         'email',
+         'password',
+         'phone',
+         'role_id' 
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,8 +48,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    protected $guarded = [];
-    public $timestamps=false;
+   
 
     public function role()
     {

@@ -25,7 +25,7 @@
       <td>{{$role->name}}</td>
       <td>{{$role->status}}</td>
         <td>
-        <a class="btn btn-primary" href="{{route('assign.role.view',$role->id)}}" >Assign Role</a>
+        <a class="btn btn-primary" href="{{route('role.view',$role->id)}}" >Assign Role</a>
         <a class="btn btn-info" href="{{route('admin.role.edit',$role->id)}}">Edit</a>
         <a class="btn btn-danger" href="{{route('admin.role.delete',$role->id)}}">Delete</a>
       </td>

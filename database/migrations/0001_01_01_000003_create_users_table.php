@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('role_id')->constrained('roles')->restrictOnDelete();
             $table->string('email')->unique();
-            $table->string('phone')->unique();
             $table->string('password');
-            
-            
             $table->rememberToken();
             $table->timestamps();
         });
