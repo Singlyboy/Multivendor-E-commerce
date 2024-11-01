@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\otpMail;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Part;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,6 +27,7 @@ class CustomerController extends Controller
             'email'=>'required||email:rfc,dns',
             'password'=>'required|min:6|confirmed',
             'mobile_number'=>'required|digits:11|numeric'
+
             
         ]);
 
@@ -34,19 +37,23 @@ class CustomerController extends Controller
             return redirect()->back();
         }
 
-    
+    $otp = rand(100000,999999);
 
-       Customer::create([
+       $customer = Customer::create([
         
         'name'=>$request->customer_name,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
-        'mobile'=>$request->mobile_number
+        'mobile'=>$request->mobile_number,
+        'otp'=>$otp
        ]);
 
+       $emailCustomerDetials = $request->customer_name;
+       
+       Mail::to($request->email)->send(new otpMail ($customer));
        notify()->success('Customer Registration Successful.');
 
-       return redirect()->back();
+       return view('frontend.pages.otp',compact('customer'));
 
 
 
@@ -88,7 +95,7 @@ class CustomerController extends Controller
 
             auth('customerGuard')->logout();
             notify()->error('Account Not verified');
-            return redirect()->route('otp.page');
+            return redirect()->route('frontend.pages.otp');
         }
         
        }else

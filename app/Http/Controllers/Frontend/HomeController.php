@@ -17,6 +17,17 @@ class HomeController extends Controller
     {
         
         return view('frontend.pages.otp');
+
+    }
+     
+    public function otpSubmit(Request $request)
+
+    {
+
+
+dd($request->all());
+
+
     }
 
 }
