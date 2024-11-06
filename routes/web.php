@@ -17,6 +17,7 @@ Route::post('/registration',[FrontendCustomerController::class,'registration'])-
 Route::post('/do-login',[FrontendCustomerController::class,'customerLogin'])->name('customer.login');
 Route::get('/otp',[FrontendHomeController::class,'otpPage'])->name('otp.page');
 Route::post('/otp-submit',[FrontendHomeController::class,'otpSubmit'])->name('otp.submit');
+Route::get('/resend-otp/{email}',[FrontendHomeController::class,'otpResend'])->name('otp.resend');
 
 Route::group(['middleware'=>'customer_auth'],function (){
 

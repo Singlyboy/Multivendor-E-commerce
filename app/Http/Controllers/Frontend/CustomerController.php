@@ -39,16 +39,19 @@ class CustomerController extends Controller
 
     $otp = rand(100000,999999);
 
-       $customer = Customer::create([
+         $customer = Customer::create([
         
         'name'=>$request->customer_name,
         'email'=>$request->email,
+        'otp_expired_at'=>now()->addMinutes(3),
         'password'=>bcrypt($request->password),
         'mobile'=>$request->mobile_number,
         'otp'=>$otp
        ]);
 
-       $emailCustomerDetials = $request->customer_name;
+      // $customer = $request->email;
+       
+      // $emailCustomerDetials = $request->customer_name;
        
        Mail::to($request->email)->send(new otpMail ($customer));
        notify()->success('Customer Registration Successful.');
@@ -62,7 +65,8 @@ class CustomerController extends Controller
     public function customerLogin(Request $request)
     {
 
-       
+      
+       //dd($request->all());
        //step1 validation
        $validation=Validator::make($request->all(),[
         'email'=>'required|email',
@@ -78,7 +82,7 @@ class CustomerController extends Controller
 
    
        //condition for login
-          $credentials=$request->except('_token');
+        $credentials=$request->except('_token');
        
        $check=auth('customerGuard')->attempt($credentials);
     
@@ -92,7 +96,6 @@ class CustomerController extends Controller
        
             return redirect()->route('home');
         }else{
-
             auth('customerGuard')->logout();
             notify()->error('Account Not verified');
             return redirect()->route('frontend.pages.otp');
@@ -113,7 +116,7 @@ class CustomerController extends Controller
         notify()->success('logout!');     
       
   
-        return redirect()->route('frontend.home');
+        return redirect()->route('home');
   } 
    
 }

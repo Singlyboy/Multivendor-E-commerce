@@ -80,7 +80,7 @@
       <div class="container">
           <h1>OTP Verification</h1>
           <p>Enter the 6-digit code sent to {{$customer->email}}</p>
-          <div id="timer">Time remaining: 2:00</div>
+          <div id="timer">Time remaining: 3:00</div>
           <form action="{{route('otp.submit')}}" method="post">
             @csrf
           <div class="otp-input">
@@ -94,7 +94,7 @@
 
           </div>
           <button type="submit">Verify</button>
-          <button id="resendButton" onclick="resendOTP()" disabled>Resend Code</button>
+          <a href="{{route('otp.resend',$customer->email)}}" id="resendButton" onclick="resendOTP()" disabled>Resend Code</a>
           </form>
       </div>
 
@@ -102,7 +102,7 @@
           const inputs = document.querySelectorAll('.otp-input input');
           const timerDisplay = document.getElementById('timer');
           const resendButton = document.getElementById('resendButton');
-          let timeLeft = 180; // 3 minutes in seconds
+          let timeLeft = 120; // 2 minutes in seconds
           let timerId;
 
           function startTimer() {
@@ -124,7 +124,7 @@
           function resendOTP() {
               // Here you would typically call your backend to resend the OTP
               alert("New OTP sent!");
-              timeLeft = 180;
+              timeLeft = 120;
               inputs.forEach(input => {
                   input.value = '';
                   input.disabled = false;

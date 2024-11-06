@@ -31,7 +31,7 @@ class UserAuthenticationController extends Controller
         if($check)
         {
             notify()->success("login successful");
-            return redirect()->route('home');
+            return redirect()->route('deshboard');
 
         }else{
             notify()->error('Something Went Wrong');
