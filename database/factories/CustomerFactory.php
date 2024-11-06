@@ -21,6 +21,7 @@ class CustomerFactory extends Factory
             'email' => fake()->unique()-> email(),
             'mobile' => fake()->unique()->randomNumber(),
             'password' => bcrypt("123456"),
-        ];
+            
+            ];
     }
 }

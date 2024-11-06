@@ -52,7 +52,7 @@ Route::post('/admin-role/permissions/assign/{r_id}', [RoleController::class, 'as
 
 
 Route::resource('users',UserController::class);
-
+Route::get('/pdf',[HomeControler::class,'generatePDF'])->name('pdf');
 
 
 //category

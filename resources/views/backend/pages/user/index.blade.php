@@ -9,6 +9,8 @@
   <div class="col-md-6">
     <h1>Users List</h1>
     <a class="btn btn-success" href="{{route('users.create')}}">Create new users</a>
+    <a class="btn btn-primary" href="{{route('pdf')}}">User pdf Downloard</a>
+    
   </div>
 
  
