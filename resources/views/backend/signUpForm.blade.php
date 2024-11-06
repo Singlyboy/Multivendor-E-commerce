@@ -29,7 +29,7 @@ body{
 .box{
     position: relative;
     width: 370px;
-    height: 750px;
+    height: 550px;
     background: #1c1c1c;
     border-radius: 50px 5px;
     overflow: hidden;

@@ -37,9 +37,10 @@ class CreatePermission extends Command
 
             Permission::updateorCreate(
                 [
-    'name'=>str_replace("."," ",$route->getName()),
+         'name'=>str_replace("."," ",$route->getName()),
+         'slug'=>$route->getName()
 
-                ]);
+        ]);
         }
 
         }

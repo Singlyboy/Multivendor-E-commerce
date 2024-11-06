@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
+use App\Models\RolePermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class RoleController extends Controller
 {
@@ -77,15 +80,57 @@ public function update(Request $request,$id)
         'status'=>$request->role_status
     ]);
   
-    // notify()->success('role updated successfully.');
+    notify()->success('role updated successfully.');
     return redirect()->route('admin.role');
 
 
 }
-public function assignRole($id)
+public function showRole($role_id)
     {
-        $allrole=Role::find($id);
+        $rolePermissions=RolePermission::where('role_id',$role_id)->get()->pluck('permission_id')->toArray();
+       
+        $permissions = Permission::all();
+        return view('backend.pages.show_permissions', compact('permissions','rolePermissions','role_id'));
+    }
 
-        return view('backend.pages.assign-role',compact('allrole'));
+    public function assignPermission(Request $request,$role_id)
+    {
+
+      
+
+        $validation = Validator::make(
+            $request->all(),
+            [
+                'permission.*' => 'required',
+            ]
+        );
+
+        if ($validation->fails()) {
+            notify()->error($validation->getMessageBag());
+            return redirect()->back();
+        }
+
+
+        try {
+
+            RolePermission::where('role_id',$role_id)->delete();
+
+            foreach($request->permission as $permission_id)
+            {
+                RolePermission::create([
+                    'role_id' => $role_id,
+                    'permission_id' => $permission_id,
+    
+                ]);
+            }
+            
+
+            notify()->success('Permission Assigned.');
+            return redirect()->back();
+        } catch (Throwable $e) {
+            notify()->error($e->getMessage());
+
+            return redirect()->back();
+        }
     }
 }
