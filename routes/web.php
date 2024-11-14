@@ -9,8 +9,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\CustomerController as FrontendCustomerController;
-
-
+use App\Http\Controllers\ProductController;
 
 Route::get('/',[FrontendHomeController::class,'home'])->name('home');
 Route::post('/registration',[FrontendCustomerController::class,'registration'])->name('customer.registration');
@@ -52,7 +51,23 @@ Route::post('/admin-role/permissions/assign/{r_id}', [RoleController::class, 'as
 
 
 Route::resource('users',UserController::class);
+Route::resource('category',CategoryController::class);
+Route::get('/ajax-Category-data',[CategoryController::class,'getCategoryData'])->name('ajax.category.data');
 Route::get('/pdf',[HomeControler::class,'generatePDF'])->name('pdf');
+
+
+Route::get('/product-list', [ProductController::class, 'productList'])->name('product.list');
+
+Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
+
+Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/delete/{p_id}', [ProductController::class, 'delete'])->name('product.delete');
+Route::get('/product/view/{p_id}', [ProductController::class, 'viewProduct'])->name('product.view');
+Route::get('/product/edit/{sojibId}', [ProductController::class, 'edit'])->name('product.edit');
+
+Route::post('/product/update/{paglaID}', [ProductController::class, 'update'])->name('product.update');
+
+Route::get('/ajax-product-data',[ProductController::class,'getProductData'])->name('ajax.product.data');
 
 
 //category

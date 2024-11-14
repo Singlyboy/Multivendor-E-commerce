@@ -38,15 +38,15 @@
         </li>
 
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{route('category.index')}}" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
             <p> Category </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{route('product.list')}}" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
-            <p> Customer </p>
+            <p> Product </p>
           </a>
         </li>
         <li class="nav-item">
